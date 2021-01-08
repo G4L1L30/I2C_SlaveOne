@@ -11,7 +11,6 @@ sensor.set_framesize(sensor.QVGA)
 sensor.skip_frames(time = 2000)
 sensor.set_vflip(1)
 sensor.set_hmirror(1)
-sensor.skip_frames(30)
 
 fm.register(board_info.PIN15, fm.fpioa.GPIOHS15, force=True)
 input_key = GPIO(GPIO.GPIOHS15, GPIO.IN)
@@ -61,13 +60,14 @@ def i2c_on_event (event):
     print("on_event:", event)
 
 try:
-    i2c = I2C(I2C.I2C2, mode = I2C.MODE_SLAVE, scl=34, sda=35, addr = 0x32,
+    i2c = I2C(I2C.I2C2, mode = I2C.MODE_SLAVE, scl=34, sda=35, addr = 0x42,
             addr_size = 7,
             on_receive = i2c_on_receive,
             on_transmit = i2c_on_transmit,
             on_event = i2c_on_event)
 except Exeption as e:
     sys.print_exception(e)
+
 
 while True:
     clock.tick()
@@ -81,6 +81,7 @@ while True:
     if len(res) > 0:
         img.draw_string(2,2, res[0].payload(), color=(0,128,0), scale=2)
         v = res[0].payload()
+        print(v)
         atual = separa(v)
 
     if(atual != Dado):
