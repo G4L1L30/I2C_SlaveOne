@@ -13,7 +13,8 @@ sensor.set_vflip(1)
 sensor.set_hmirror(1)
 
 fm.register(board_info.PIN15, fm.fpioa.GPIOHS15, force=True)
-input_key = GPIO(GPIO.GPIOHS15, GPIO.IN)
+input_key = GPIO(GPIO.GPIOHS15, GPIO.IN, GPIO.PULL_DOWN)
+
 
 atual = []
 Dado = []

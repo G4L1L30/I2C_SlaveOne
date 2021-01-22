@@ -14,12 +14,13 @@ sensor.set_hmirror(1)
 sensor.skip_frames(30)
 
 fm.register(board_info.PIN15, fm.fpioa.GPIOHS15, force=True)
-input_key = GPIO(GPIO.GPIOHS15, GPIO.IN)
+input_key = GPIO(GPIO.GPIOHS15, GPIO.IN, GPIO.PULL_DOWN)
 
 atual = []
 Dado = []
 Enviado = []
 pergunta = 0
+entrada = 2
 vl = 0
 
 def separa(v):
@@ -37,8 +38,12 @@ def separa(v):
     return S
 
 def i2c_on_receive(data):
-    global pergunta
+    global pergunta, entrada
     pergunta = data
+    if(pergunta != 0 or pergunta != 1):
+        entrada = pergunta
+    else:
+        entrada = 2
 
 def i2c_on_transmit():
     if(pergunta == 0): #pergutando se tem dado
@@ -71,7 +76,7 @@ except Exeption as e:
 
 while True:
     clock.tick()
-    if(len(Dado)>0 and len(Enviado) > 0 and input_key.value() == 1):
+    if(len(Dado)>0 and len(Enviado) > 0 and entrada == 2):
         Dado.clear()
         Enviado.clear()
         atual.clear()
