@@ -1,7 +1,6 @@
 import time
 from machine import I2C
 import sensor, image, lcd
-from Maix import GPIO
 
 clock = time.clock()
 lcd.init()
@@ -12,9 +11,6 @@ sensor.skip_frames(time = 2000)
 sensor.set_vflip(1)
 sensor.set_hmirror(1)
 sensor.skip_frames(30)
-
-fm.register(board_info.PIN15, fm.fpioa.GPIOHS15, force=True)
-input_key = GPIO(GPIO.GPIOHS15, GPIO.IN, GPIO.PULL_DOWN)
 
 atual = []
 Dado = []
@@ -76,7 +72,7 @@ except Exeption as e:
 
 while True:
     clock.tick()
-    if(len(Dado)>0 and len(Enviado) > 0 and entrada == 2):
+    if(len(Dado)>0 and entrada == 2):
         Dado.clear()
         Enviado.clear()
         atual.clear()
