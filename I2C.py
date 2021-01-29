@@ -62,7 +62,7 @@ def i2c_on_event (event):
     print("on_event:", event)
 
 try:
-    i2c = I2C(I2C.I2C0, mode = I2C.MODE_SLAVE, scl=34, sda=35, freq = 400000, addr = 0x32,
+    i2c = I2C(I2C.I2C2, mode = I2C.MODE_SLAVE, scl=34, sda=35, freq = 400000, addr = 0x32,
     addr_size = 7,
     on_receive = i2c_on_receive,
     on_transmit = i2c_on_transmit,
