@@ -3,3 +3,5 @@ Este código esta implementando no Maix Bit da Kendryte, ele tem como base a com
 Eu nao achei em nenhum lugar da internet como estabelecer esse tipo de comunicação com isso acredito que tenha sido o primeiro a conseguir.
 Tambem é usando uma entrada para ativar uma função de limpeza de variaveis.
 Alem da detecção de QR Codes.
+Estou usanndo uma comunicacao I2C, para limpar e transmitir variaveis
+
